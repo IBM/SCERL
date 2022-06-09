@@ -71,10 +71,6 @@ type device : o {
                     stop;
                 Now the noun is unattended;
                 say "You unattended [the noun]. It's a fire hazard.";
-            every turn:
-                if the device-like is not visible:
-                    Now the device-like is unattended;
-                    say "You unattended [the noun]. It's a fire hazard.";
         """;
     }
 }
