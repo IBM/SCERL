@@ -1,0 +1,56 @@
+# stove
+type stove : s {
+    predicates {
+        turned_on(stove);
+        turned_off(stove);
+    }
+    rules {
+        turn_on/stove :: $at(P, r) & $at(stove, r) & turned_off(stove) -> turned_on(stove);
+        turn_off/stove :: $at(P, r) & $at(stove, r) & turned_on(stove) -> turned_off(stove);
+    }
+    reverse_rules {
+        turn_on/stove :: turn_off/stove;
+    }
+    constraints {
+        stove1 :: turned_on(stove) & turned_off(stove) -> fail();
+    }
+    inform7 {
+        type {
+            kind :: "stove-like";
+            definition :: "stove-like can be turned on or turned off.";
+        }
+        predicates {
+            turned_on(stove) :: "The {stove} is turned on";
+            turned_off(stove) :: "The {stove} is turned off";
+        }
+        commands {
+            turn_on/stove :: "turn on {stove}" :: "turning on the {stove}";
+            turn_off/stove :: "turn off {stove}" :: "turning off the {stove}";
+        }
+        code :: """
+        
+            [Turning on stove]
+            Understand the command "turn" as something new.
+            Turning on is an action applying to one thing.
+            Understand "turn on [something]" as turning on.
+            
+            Carry out turning on:
+                if the noun is turned on:
+                    say "[the noun] is already on.";
+                    stop;
+                Now the noun is turned on;
+                say "You turned on [the noun].";
+                
+            [Turning off stove]
+            Understand "turn off [something]" as turning off.
+            Turning off is an action applying to one thing.
+            
+            Carry out turning off a stove-like:
+                if the noun is turned off:
+                    say "[noun] is already off.";
+                    stop;
+                Now the noun is turned off;
+                say "You turned off [the noun].";
+        """;
+    }
+}

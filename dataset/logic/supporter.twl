@@ -1,0 +1,60 @@
+# supporter
+type s : t {
+    predicates {
+        on(o, s);
+        cleaned(s);
+        dirty(s);
+    }
+    rules {
+        clean/s :: $at(P, r) & $at(s, r) & dirty(s) -> cleaned(s);
+        stain/s :: $at(P, r) & $at(s, r) & cleaned(s) -> dirty(s);
+    }
+    reverse_rules {
+        clean/s :: stain/s;
+    }
+    constraints {
+        s1 :: cleaned(s) & dirty(s) -> fail();
+    }
+
+    inform7 {
+        type {
+            kind :: "supporter";
+            definition :: "supporters are fixed in place. supporter can be cleaned or dirty.";
+        }
+
+        predicates {
+            on(o, s) :: "The {o} is on the {s}";
+            cleaned(s) :: "The {s} is cleaned";
+            dirty(s) :: "The {s} is dirty";
+        }
+        commands {
+            clean/s :: "clean {s}" :: "cleaning the {s}";
+            stain/s :: "stain {s}" :: "staining the {s}";
+        }
+        code :: """
+
+            [Cleaning supporter]
+            Understand the command "clean" as something new.
+            Cleaning is an action applying to one thing.
+            Understand "clean [something]" as cleaning.
+
+            Carry out cleaning:
+                if the noun is cleaned:
+                    say "[the noun] is already cleaned.";
+                    stop;
+                Now the noun is cleaned;
+                say "You clean [the noun].";
+
+            [Staining supporter]
+            Understand "stain [something]" as staining.
+            Staining is an action applying to one thing.
+
+            Carry out staining a supporter:
+                if the noun is dirty:
+                    say "[noun] is already dirty.";
+                    stop;
+                Now the noun is dirty;
+                say "You stain [the noun].";
+            """;
+    }
+}
