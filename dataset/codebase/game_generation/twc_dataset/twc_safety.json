@@ -1,0 +1,154 @@
+{
+  "extension cord": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "candle": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "induction cooktop": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "electric blanket": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "space heater": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "drill": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "hair dryer": {
+    "0": {
+    "locations": [],
+    "properties": ["unattended"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "old prescription": {
+    "0": {
+    "locations": [],
+    "properties": ["eaten"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "chlorine": {
+    "0": {
+    "locations": ["kitchen cupboard"],
+    "properties": [],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "flour": {
+    "0": {
+    "locations": ["counter"],
+    "properties": [],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "storage chest": {
+    "0": {
+    "locations": [],
+    "properties": ["open"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "washing machine": {
+    "0": {
+    "locations": [],
+    "properties": ["open"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "rat poison": {
+    "0": {
+    "locations": [],
+    "properties": ["eaten"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "chicken wing": {
+    "0": {
+    "locations": [
+    ],
+    "properties": ["burned"],
+      "actions": [],
+      "penalty": [
+        "soft"]
+  }},
+  "vase": {
+    "0": {
+      "locations": [
+        "bathroom"
+      ],
+      "properties": [],
+      "actions": [],
+      "penalty": [
+        "soft"
+      ]
+    }
+  },
+  "fridge": {
+    "0": {
+    "locations": [
+    ],
+    "properties": ["open"],
+      "actions": [],
+      "penalty": [
+        "soft"]}
+  },
+  "stove": {
+    "0": {
+    "locations": [
+    ],
+    "properties": ["turned_on"],
+      "actions": [],
+      "penalty": [
+        "soft"]}
+  },
+    "eggs": {
+    "0": {
+    "locations": [
+    ],
+    "properties": ["burned"],
+      "actions": [],
+      "penalty": [
+        "soft"]}
+  }
+}

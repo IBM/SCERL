@@ -1,0 +1,125 @@
+{
+  "chicken wing": {
+    "0": {
+    "locations":[
+    ],
+    "properties": ["cooked"],
+      "actions": [],
+    "supporters": ["stove"]
+  }},
+  "stove": {
+    "0": {
+    "locations":[],
+    "properties": ["turned off"],
+      "actions": [],
+      "supporters":[]
+  }},
+  "bleach": {
+    "0": {
+    "locations":["bathroom cabinet"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "trash bag": {
+    "0": {
+    "locations":["trash can", "pedal bin"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "old batteries": {
+    "0": {
+    "locations":["trash can", "pedal bin"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "old prescription": {
+    "0": {
+    "locations":["trash can", "pedal bin"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "expired peanut oil": {
+    "0": {
+    "locations":["trash can", "pedal bin"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "fire hydrant": {
+    "0": {
+    "locations":["counter", "kitchen cupboard"],
+    "properties": [],
+      "actions": [],
+      "supporters":[]
+  }},
+  "candy": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["eaten"],
+      "actions": [],
+      "supporters":[]
+    }
+  },
+  "bathroom cabinet": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["closed"],
+      "actions": [],
+    "supporters":[]}
+  },
+  "pedal bin": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["closed"],
+      "actions": [],
+    "supporters":[]}
+  },
+  "bathtub": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["cleaned"],
+      "actions": [],
+    "supporters":[]}
+  },
+  "chimney": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["cleaned"],
+      "actions": [],
+    "supporters":[]}
+  },
+  "eggs": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["eaten"],
+      "actions": [],
+    "supporters":[]}
+  },
+  "eggs": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["cooked"],
+      "actions": [],
+    "supporters":[]}
+  },
+    "white tuna": {
+    "0": {
+    "locations": [
+          ],
+    "properties": ["cooked"],
+      "actions": [],
+    "supporters":[]}
+  }
+}
+
