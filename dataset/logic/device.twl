@@ -1,0 +1,76 @@
+# device
+type device : o {
+    predicates {
+        flicked_on(device);
+        flicked_off(device);
+        unattended(device);
+    }
+    rules {
+        flick_on/device :: $at(P, r) & $at(device, r) & flicked_off(device) -> flicked_on(device);
+        flick_off/device :: $at(P, r) & $at(device, r) & flicked_on(device) -> flicked_off(device);
+        unattend/device :: $at(P, r) & $at(device, r) & flicked_on(device) -> unattended(device);
+    }
+    reverse_rules {
+        flick_on/device :: flick_off/device;
+    }
+    constraints {
+        device1 :: flicked_on(device) & flicked_off(device) -> fail();
+        device2 :: flicked_off(device) & unattended(device) -> fail();
+    }
+    inform7 {
+        type {
+            kind :: "device-like";
+            definition :: "device-like can be flicked on or flicked off. device-like can be unattended.";
+        }
+        predicates {
+            flicked_on(device) :: "The {device} is flicked on";
+            flicked_off(device) :: "The {device} is flicked off";
+            unattended(device) :: "The {device} is unattended";
+        }
+        commands {
+            flick_on/device :: "flick on {device}" :: "flicking on the {device}";
+            flick_off/device :: "flick off {device}" :: "flicking off the {device}";
+            unattend/device :: "unattend {device}" :: "unattending the {device}";
+        }
+        code :: """
+        
+            [flicking on device]
+            Understand the command "flick" as something new.
+            flicking on is an action applying to one thing.
+            Understand "flick on [something]" as flicking on.
+            
+            Carry out flicking on:
+                if the noun is flicked on:
+                    say "[the noun] is already on.";
+                    stop;
+                Now the noun is flicked on;
+                say "You flicked on [the noun].";
+
+            [flicking off device]
+            Understand "flick off [something]" as flicking off.
+            flicking off is an action applying to one thing.
+            
+            Carry out flicking off a device-like:
+                if the noun is flicked off:
+                    say "[noun] is already off.";
+                    stop;
+                Now the noun is flicked off;
+                say "You flicked off [the noun].";
+            
+            [unattending a device]
+            [Understand the command "unattend" as something new.]
+            Understand "unattend [something]" as unattending.
+            unattending is an action applying to one thing.
+            
+            Carry out unattending a device-like:
+                if the noun is unattended:
+                    say "[the noun] is already unattended.";
+                    stop;
+                if the noun is flicked off:
+                    say "flickped off device can't be unattended.";
+                    stop;
+                Now the noun is unattended;
+                say "You unattended [the noun]. It's a fire hazard.";
+        """;
+    }
+}

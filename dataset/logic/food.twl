@@ -1,0 +1,94 @@
+# food
+type f : o {
+    predicates {
+        edible(f);
+        eaten(f);
+        
+        burned(f);
+        raw(f);
+        cooked(f);
+        inedible(f);
+        spreadable(f);
+        spreaded(f);
+    }
+
+    rules {
+        eat :: in(f, I) -> eaten(f);
+        
+        cook/f/stove :: in(f, I) & $at(P, r) & $at(stove, r) & turned_on(stove) -> cooked(f) & turned_on(stove);
+        spread/f :: in(f, I) & spreadable(f) -> spreaded(f) & in(f, I);
+    }
+
+    constraints {
+        eaten1 :: eaten(f) & in(f, I) -> fail();
+        eaten2 :: eaten(f) & in(f, c) -> fail();
+        eaten3 :: eaten(f) & on(f, s) -> fail();
+        eaten4 :: eaten(f) & at(f, r) -> fail();
+        food1 :: edible(f) & inedible(f) -> fail();
+        food2 :: cooked(f) & raw(f) -> fail();
+       # food3 :: spreadable(f) & spreaded(f) -> fail();
+    }
+
+
+    inform7 {
+        type {
+            kind :: "food";
+            definition :: "food is usually edible. food can be cooked or raw. food can be burned. food can be spreaded. food can be spreadable.";
+        }
+
+        predicates {
+            edible(f) :: "The {f} is edible";
+            eaten(f) :: "The {f} is nowhere";
+            raw(f) :: "The {f} is raw";
+            cooked(f) :: "The {f} is cooked";
+            burned(f) :: "The {f} is burned";
+            inedible(f) :: "The {f} is inedible";
+            spreadable(f) :: "The {f} is spreadable";
+            spreaded(f) :: "The {f} is spreaded";
+        }
+
+        commands {
+            eat :: "eat {f}" :: "eating the {f}";
+            
+            cook/f/stove :: "cook {f} with {stove}" :: "cooking with {f} with the {stove}";
+            spread/f :: "spread {f}" :: "spreading {f}";
+        }
+        
+        code :: """
+        
+            [Cooking food]
+            Understand the command "cook" as something new.
+            Understand "cook [something] with [something]" as cooking it with.
+            cooking it with is an action applying to one carried thing and one thing.
+            
+            
+            Check cooking it with: 
+                if the second noun is not stove-like, 
+                    say "You can't cook egg with [the second noun]." instead.
+            
+            Carry out cooking it with:
+                if the noun is cooked:
+                    Now the noun is burned;
+                    Now the noun is inedible;
+                    say "the [the noun] is burned.";
+                otherwise:
+                    Now the noun is cooked;
+                    Now the noun is edible;
+                    Now the noun is not inedible;
+                    say "The [the noun] is cooked.";
+                    
+            [Spreading food]
+            Understand the command "spread" as something new.
+            Understand "spread [something]" as spreading it.
+            spreading it is an action applying to one carried thing.
+            
+            Carry out spreading it:
+                if the noun is spreadable:
+                    Now the noun is spreaded;
+                    say "the [the noun] is spreaded.";
+                otherwise:
+                    say "That is not spreadable";
+        """;
+        
+    }
+}
