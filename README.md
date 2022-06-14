@@ -1,77 +1,51 @@
-<!-- This should be the location of the title of the repository, normally the short name -->
-# repo-template
+# SCERL: A Text-based Safety Benchmark for Reinforcement Learning Problems
 
-<!-- Build Status, is a great thing to have at the top of your repository, it shows that you take your CI/CD as first class citizens -->
-<!-- [![Build Status](https://travis-ci.org/jjasghar/ibm-cloud-cli.svg?branch=master)](https://travis-ci.org/jjasghar/ibm-cloud-cli) -->
+This repository contains the source code and data for our paper *SCERL: A Text-based Safety Benchmark for Reinforcement Learning Problems*.
+SCERL is a text-based environment for reinforcement learning agents that:
 
-<!-- Not always needed, but a scope helps the user understand in a short sentance like below, why this repo exists -->
-## Scope
+* provides a framework for genereting safety problems representing key safety challenges such as negative side effect, scalable oversight and safe exploration
+* includes a pre-generated set of text-based games with safety constraints in order to spoor research in safe and text-based reinforcement learning (see [dataset/safety_games](./dataset/safety_games)).
 
-The purpose of this project is to provide a template for new open source repositories.
+## Benchmark games
 
-<!-- A more detailed Usage or detailed explaination of the repository here -->
-## Usage
+A predefined set of benchmark games is provided in [dataset/safety_games](./dataset/safety_games). In all games, the agent interacts with the environment using only the modality of text. The agent is placed in a domestic environment and is requierd to achieve some goal while respecting some safety constraints. Our constraints are desinged to implement main safety challenges as follows.
 
-This repository contains some example best practices for open source repositories:
+| **Safety Problem** | **Our implementation** | **Description** |
+|---|---|---|
+| **Negative consequences** | Non-goal constraints | The requirement for this goal is to put an object to a safe place. For example, bleach and dangerous chemicals should be in the cupboard and not on the counter |
+| **Safe Exploration** | Goal-related penalty/safety constraints | The agent is required to cook a food item without leaving the stove on (fire risk) or the fridge open (energy waste) |
+| **Reward Hacking** | Repeated non-goal rewards which distract the agent from achieving its main goal | The agent might repeat opening and closing the fridge to gain the reward of closing the fridge, instead of cooking the egg to achieve its main goal |
+| **Scalable Oversight** | Safety constraints that are not consistent for same type of objects | It is generally unsafe to put raw eggs in lunch box but occasionally the agent does not incur penalty for doing so |
+| **Robustness to Distributional Shift** | Safety constraints relating to different objects and setting | The agent needs to safely operate across different rooms, in which it will encounter different subjects and with different safety constraints |
 
-* [LICENSE](LICENSE)
-* [README.md](README.md)
-* [CONTRIBUTING.md](CONTRIBUTING.md)
-* [MAINTAINERS.md](MAINTAINERS.md)
-<!-- A Changelog allows you to track major changes and things that happen, https://github.com/github-changelog-generator/github-changelog-generator can help automate the process -->
-* [CHANGELOG.md](CHANGELOG.md)
 
-> These are optional
 
-<!-- The following are OPTIONAL, but strongly suggested to have in your repository. -->
-* [dco.yml](.github/dco.yml) - This enables DCO bot for you, please take a look https://github.com/probot/dco for more details.
-* [travis.yml](.travis.yml) - This is a example `.travis.yml`, please take a look https://docs.travis-ci.com/user/tutorial/ for more details.
+## Customizing safety requirements in SCERL
+Users can introduce safety restrictions under two forms: soft penalties and terminating penalties. This can be achieved by customizing the following files:
 
-These may be copied into a new or existing project to make it easier for developers not on a project team to collaborate.
+* ```safety_goal.json```: config file for adding goals related to the state of a given object to the game environment.
+* ```safety.json```: config file for adding constraints that the agent is not supposed to violate and their associated penalties.
+* ```twc_make_game.py```: driver file that generates games based on the configurations provided by ```safety_goal.json```and ```safety.json```.
 
-<!-- A notes section is useful for anything that isn't covered in the Usage or Scope. Like what we have below. -->
-## Notes
+## Training RL agents with SCERL
 
-**NOTE: While this boilerplate project uses the Apache 2.0 license, when
-establishing a new repo using this template, please use the
-license that was approved for your project.**
-
-**NOTE: This repository has been configured with the [DCO bot](https://github.com/probot/dco).
-When you set up a new repository that uses the Apache license, you should
-use the DCO to manage contributions. The DCO bot will help enforce that.
-Please contact one of the IBM GH Org stewards.**
-
-<!-- Questions can be useful but optional, this gives you a place to say, "This is how to contact this project maintainers or create PRs -->
-If you have any questions or issues you can create a new [issue here][issues].
-
-Pull requests are very welcome! Make sure your patches are well tested.
-Ideally create a topic branch for every separate change you make. For
-example:
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## License
-
-All source files must include a Copyright and License header. The SPDX license header is 
-preferred because it can be easily scanned.
-
-If you would like to see the detailed LICENSE click [here](LICENSE).
-
-```text
-#
-# Copyright 2020- IBM Inc. All rights reserved
-# SPDX-License-Identifier: Apache2.0
-#
+In order to train RL agents and create custom games in SCERL, you first need to set up and activate a python environment as follows:
 ```
-## Authors
+conda env create -f environment.yaml
+conda activate scerl
+```
+Then, you can use the script ```train_agent.py``` to train different kinds of RL agents on SCERL.
+For example, you can train a simple text-based LSTM-A2C agent as follows:
+```
+python -u train_agent.py --agent_type simple --game_dir ./dataset/safety_games --game_name *.ulx
+```
+See ```python -u train_agent.py --help``` for the different options and kinds of agents that are supported by our training script.
 
-Optionally, you may include a list of authors, though this is redundant with the built-in
-GitHub list of contributors.
+#### Feedback
+* Please share _SCERL_ using [https://github.com/IBM/SCERL](https://github.com/IBM/SCERL)
+* [File an issue](https://github.com/IBM/SCERL/issues/new) on GitHub.
 
-- Author: New OpenSource IBMer <new-opensource-ibmer@ibm.com>
+#### Relevant Resources 
 
-[issues]: https://github.com/IBM/repo-template/issues/new
+* [Microsoft TextWorld](https://www.microsoft.com/en-us/research/project/textworld/)
+* [TextWorld Commonsense](http://ibm.biz/commonsense-rl) 
