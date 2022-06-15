@@ -1,9 +1,0 @@
-examine {t}
-go east
-go north
-go south
-go west
-insert {o} into {c}
-inventory
-put {o} on {s}
-take {o}
