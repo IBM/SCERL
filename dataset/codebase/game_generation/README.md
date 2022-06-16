@@ -20,4 +20,6 @@ $ python twc_make_game.py -h
 
 # Generating games of varying difficulty
 
-![Easy Game](Easy.png)
+<p align="center">
+  <img src="Easy.png" width="350" title="Easy game example">
+</p>
