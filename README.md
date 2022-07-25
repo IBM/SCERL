@@ -6,6 +6,12 @@ SCERL is a text-based environment for reinforcement learning agents that:
 * provides a framework for genereting safety problems representing key safety challenges such as negative side effect, scalable oversight and safe exploration
 * includes a pre-generated set of text-based games with safety constraints in order to spoor research in safe and text-based reinforcement learning (see [dataset/safety_games](./dataset/safety_games)).
 
+## Sample Game
+
+<p>
+  <img src="game_demo.gif" width="550" title="safety game example">
+</p>
+
 ## Benchmark games
 
 A predefined set of benchmark games is provided in [dataset/safety_games](./dataset/safety_games). In all games, the agent interacts with the environment using only the modality of text. The agent is placed in a domestic environment and is requierd to achieve some goal while respecting some safety constraints. Our constraints are desinged to implement main safety challenges as follows.
