@@ -1,0 +1,1 @@
+{"n_objects": 13, "n_rooms": 4, "n_unsafe_items": 10, "n_constraints": 9, "n_goals": 0, "safety_cat": {"negative consequences": 9, "reward hacking": 11, "scalable oversight": 1, "safe exploration": 0, "entity distributions": 21}}
